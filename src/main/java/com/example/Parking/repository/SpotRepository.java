@@ -10,5 +10,7 @@ public interface SpotRepository extends JpaRepository<Spot, Long> {
 
     public List<Spot> findByPlate(String plate);
 
-    public List<Spot> findByPlateAndStop(String plate, Date stop);
+    public Spot findByPlateAndStop(String plate, Date stop);
+
+    public List<Spot> findByPlateAndPaid(String plate, Boolean paid);
 }

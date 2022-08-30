@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Spot {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false)
     private String plate;
@@ -17,6 +17,22 @@ public class Spot {
     private LocalDateTime start;
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime stop;
+    @Column(name = "driver_type")
+    @Enumerated(EnumType.STRING)
+    DriverType driverType;  // it can be changed to relation with RATE table
+    private Boolean paid;
+
+    public Spot() {
+    }
+
+    public Spot(int id, String plate, LocalDateTime start, LocalDateTime stop, DriverType driverType, Boolean paid) {
+        this.id = id;
+        this.plate = plate;
+        this.start = start;
+        this.stop = stop;
+        this.driverType = driverType;
+        this.paid = paid;
+    }
 
     public String getPlate() {
         return plate;
@@ -40,6 +56,22 @@ public class Spot {
 
     public void setStop(LocalDateTime stop) {
         this.stop = stop;
+    }
+
+    public DriverType getDriverType() {
+        return driverType;
+    }
+
+    public void setDriverType(DriverType driverType) {
+        this.driverType = driverType;
+    }
+
+    public Boolean getPaid() {
+        return paid;
+    }
+
+    public void setPaid(Boolean paid) {
+        this.paid = paid;
     }
 
     public int getId() {
